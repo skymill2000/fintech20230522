@@ -11,7 +11,7 @@ const car = {
 
 console.log(car.name);
 console.log(car.ph);
-car.start;
-car.stop;
+console.log(car.start);
+console.log(car.stop);
 car.start();
 car.stop();
