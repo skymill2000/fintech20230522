@@ -1,10 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-
-const Welcome = ({ username }) => {
-  console.log(username);
-  return <p>안녕하세요! {username}님 반값습니다.</p>;
-};
+import Welcome from "./components/Welcome";
 
 function App() {
   return (
