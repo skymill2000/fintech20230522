@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 
 const StateComponent = () => {
-  let userName = "홍길동";
+  //   let userName = "홍길동";
+  let [count, setCount] = useState(0);
+
   setInterval(() => {
-    console.log("이름이 변경됩니다 변경된 이름은", userName);
-    userName = "둘리";
+    console.log("카운트를 셉니다", count);
+    setCount(1000);
   }, 3000);
 
-  return <div>{userName}</div>;
+  return <div>{count}</div>;
 };
 
 export default StateComponent;
