@@ -1,17 +1,19 @@
 import React from "react";
 
-const NewsList = ({ newList }) => {
+const NewsList = ({ newsList }) => {
   return (
     <div>
-      {/* {newList.map((el) => {
+      {newsList.map((news) => {
         return (
           <>
-            <p>이름 : {el.username}</p>
-            <p>나이 : {el.age}</p>
-            <p>회원키 : {el.height}</p>
+            <p>{news.title}</p>
+            <img src={news.urlToImage}></img>
+            <p>{news.description}</p>
+            <p>{news.author}</p>
+            <a href={news.url}>기사로 이동하기</a>
           </>
         );
-      })} */}
+      })}
     </div>
   );
 };
