@@ -4,7 +4,9 @@ import axios from "axios";
 const AxiosComponents = () => {
   const handleClick = () => {
     axios
-      .get("https://jsonplaceholder.typicode.com/todos/1")
+      .get(
+        "https://newsapi.org/v2/everything?q=tesla&from=2023-04-24&sortBy=publishedAt&apiKey=78bc6ddd8cdb48ceac76f5f9b9dfc4c5"
+      )
       .then((response) => {
         console.log(response.data);
         console.log("응답 수신 완료");

@@ -13,6 +13,7 @@ const NewsPage = () => {
 
   const handleClick = () => {
     console.log(searchInput);
+    //Work2: searchInput 을 가지고 axios 요청을 작성하기
   };
 
   return (
