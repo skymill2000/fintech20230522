@@ -10,7 +10,7 @@ const InputComponents = () => {
   };
 
   const handleClick = () => {
-    console.log("클릭");
+    alert(userName);
   };
 
   return (
