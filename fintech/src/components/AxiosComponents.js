@@ -3,9 +3,12 @@ import axios from "axios";
 
 const AxiosComponents = () => {
   const handleClick = () => {
-    axios.get("https://jsonplaceholder.typicode.com/todos/1").then((data) => {
-      console.log(data);
-    });
+    axios
+      .get("https://jsonplaceholder.typicode.com/todos/1")
+      .then((response) => {
+        console.log(response.data);
+        console.log("응답 수신 완료");
+      });
   };
   return (
     <div>
