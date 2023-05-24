@@ -7,6 +7,7 @@ import InputComponents from "./components/InputComponents";
 import ListComponents from "./components/ListComponents";
 import StyledComponents from "./components/StyledComponents";
 import AxiosComponents from "./components/AxiosComponents";
+import NewsPage from "./pages/NewsPage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/state" element={<StateComponent />}></Route>
         <Route path="/input" element={<InputComponents />}></Route>
         <Route path="/axios" element={<AxiosComponents />}></Route>
+        <Route path="/news" element={<NewsPage />}></Route>
       </Routes>
     </BrowserRouter>
   );
