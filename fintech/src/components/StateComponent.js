@@ -7,7 +7,7 @@ const StateComponent = () => {
   setInterval(() => {
     console.log("카운트를 셉니다", count);
     setCount(1000);
-  }, 3000);
+  }, 5000);
 
   return <div>{count}</div>;
 };
