@@ -6,6 +6,7 @@ import StateComponent from "./components/StateComponent";
 import InputComponents from "./components/InputComponents";
 import ListComponents from "./components/ListComponents";
 import StyledComponents from "./components/StyledComponents";
+import AxiosComponents from "./components/AxiosComponents";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<Welcome />}></Route>
         <Route path="/state" element={<StateComponent />}></Route>
         <Route path="/input" element={<InputComponents />}></Route>
+        <Route path="/axios" element={<AxiosComponents />}></Route>
       </Routes>
     </BrowserRouter>
   );
