@@ -6,7 +6,7 @@ import NewsList from "../components/News/NewsList";
 const NewsPage = () => {
   return (
     <div>
-      <HeaderTitle></HeaderTitle>
+      <HeaderTitle title={"뉴스검색"}></HeaderTitle>
       <SearchInput></SearchInput>
       <NewsList></NewsList>
     </div>
