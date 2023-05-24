@@ -8,6 +8,8 @@ const MyButton = styled.button`
   color: #bf4f74;
   margin: 0 1em;
   padding: 0.25em 1em;
+  -webkit-box-shadow: 9px 9px 40px 5px #000000;
+  box-shadow: 9px 9px 40px 5px #000000;
 `;
 
 const StyledComponents = () => {
