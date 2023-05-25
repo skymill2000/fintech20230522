@@ -16,17 +16,15 @@ const AuthResultPage = () => {
     //Axios 를 통해 토큰을 발급 받습니다.
     let requestBody = {
       code: code,
-      client_id: "9c785a50-ac39-4dac-af61-eb82eb80e139",
-      client_secret: "93b9698e-14a8-4462-9f76-6fe06e0250de",
+      client_id: "9c785a50-ac39-4dac-af61-eb82eb80e139", // 본인 클라이언트 ID
+      client_secret: "93b9698e-14a8-4462-9f76-6fe06e0250de", // 클라이언트 Secret
       redirect_uri: "http://localhost:3000/authResult",
       grant_type: "authorization_code",
     };
 
-    axios
-      .post("https://testapi.openbanking.or.kr/oauth/2.0/token", requestBody)
-      .then((response) => {
-        console.log(response);
-      });
+    axios.post("/oauth/2.0/token", requestBody).then((response) => {
+      console.log(response);
+    });
   };
 
   return (
