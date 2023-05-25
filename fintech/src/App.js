@@ -4,12 +4,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NewsPage from "./pages/NewsPage";
 import AuthPage from "./pages/AuthPage";
 import AuthResultPage from "./pages/AuthResultPage";
+import AccountList from "./pages/AccountList";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<AuthPage />}></Route>
+        <Route path="/main" element={<AccountList />}></Route>
         <Route path="/news" element={<NewsPage />}></Route>
         <Route path="/authResult" element={<AuthResultPage />}></Route>
       </Routes>
