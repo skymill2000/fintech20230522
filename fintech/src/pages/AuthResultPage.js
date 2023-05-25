@@ -35,8 +35,13 @@ const AuthResultPage = () => {
         setAccessToken(data.access_token);
         setUserSeqNo(data.user_seq_no);
 
-        localStorage.setItem("accessToken", data.access_token);
-        localStorage.setItem("userSeqNo", data.user_seq_no);
+        if (data.rsp_code !== "O0001") {
+          localStorage.setItem("accessToken", data.access_token);
+          localStorage.setItem("userSeqNo", data.user_seq_no);
+          alert("저장 완료");
+        } else {
+          alert("인증에 실패했습니다 다시 시도해 주세요");
+        }
       });
   };
 
