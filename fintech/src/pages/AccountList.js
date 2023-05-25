@@ -1,10 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import HeaderTitle from "../components/News/HeaderTitle";
 import axios from "axios";
+import MainAccountCard from "../components/Main/MainAccountCard";
 
 const AccountList = () => {
   let accessToken = "";
   let userSeqNo = "";
+
+  let [accountList, setAccountList] = useState([]);
 
   useEffect(() => {
     console.log(localStorage.getItem("accessToken"));
@@ -30,13 +33,22 @@ const AccountList = () => {
     };
 
     axios(option).then(({ data }) => {
-      console.log(data);
+      console.log(data.res_list);
+      setAccountList(data.res_list);
     });
   };
 
   return (
     <div>
       <HeaderTitle title={"계좌목록"}></HeaderTitle>
+      {accountList.map((account) => {
+        return (
+          <MainAccountCard
+            bankName={account.bank_name}
+            fintechUseNo={account.fintech_use_num}
+          ></MainAccountCard>
+        );
+      })}
     </div>
   );
 };
