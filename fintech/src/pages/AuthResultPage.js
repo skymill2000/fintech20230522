@@ -11,6 +11,7 @@ const AuthResultPage = () => {
   console.log(code);
 
   const [accessToken, setAccessToken] = useState("");
+  const [userSeqNo, setUserSeqNo] = useState("");
 
   const getAccessToken = () => {
     //Axios 를 통해 토큰을 발급 받습니다.
@@ -22,9 +23,21 @@ const AuthResultPage = () => {
       grant_type: "authorization_code",
     };
 
-    axios.post("/oauth/2.0/token", requestBody).then((response) => {
-      console.log(response);
-    });
+    const urlFormEncodedRequestBody = queryString.stringify(requestBody);
+    //urlencoded 형태로 전송 데이터를 변경합니다.
+
+    axios
+      .post("/oauth/2.0/token", urlFormEncodedRequestBody)
+      .then(({ data }) => {
+        console.log(data.access_token);
+        console.log(data.user_seq_no);
+
+        setAccessToken(data.access_token);
+        setUserSeqNo(data.user_seq_no);
+
+        localStorage.setItem("accessToken", data.access_token);
+        localStorage.setItem("userSeqNo", data.user_seq_no);
+      });
   };
 
   return (
@@ -32,6 +45,8 @@ const AuthResultPage = () => {
       <HeaderTitle title={"토큰 발급"}></HeaderTitle>
       <p>발급 받은 인증 코드는 : {code}</p>
       <button onClick={getAccessToken}>AccessToken 발급</button>
+      <p>발급 받은 AccessToken : {accessToken}</p>
+      <p>발급 받은 userSeqNo : {userSeqNo}</p>
     </div>
   );
 };
