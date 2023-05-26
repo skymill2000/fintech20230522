@@ -127,7 +127,7 @@ const ModalCard = ({ bankName, fintechUseNo, tofintechno }) => {
     };
 
     axios(option).then(({ data }) => {
-      if (data.rsp_code === "A0000") {
+      if (data.rsp_code === "A0000" || data.rsp_code === "A0015") {
         alert("결제 완료 !");
       } else {
         alert("입금실패 !");
