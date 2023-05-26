@@ -6,7 +6,7 @@ import Modal from "react-modal";
 import ModalWithdraw from "../components/Withdraw/ModalWithdraw";
 
 const QrCodeReaderPage = () => {
-  const [val, setVal] = useState("");
+  const [val, setVal] = useState(""); // 사용할 출금 이후 입금할 fintechUseNo
   const [openModal, setOpenModal] = useState(false); //no camera : true
 
   const CustomStyles = {
