@@ -1,31 +1,58 @@
 import React from "react";
+import styled from "styled-components";
+
+const Table = styled.table`
+  width: 100%;
+  margin: 10px;
+`;
+
+const TableHead = styled.thead`
+  background-color: #f2f2f2;
+`;
+
+const TableHeaderCell = styled.td`
+  font-weight: bold;
+  padding: 8px;
+`;
+
+const TableBody = styled.tbody``;
+
+const TableRow = styled.tr`
+  &:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+`;
+
+const TableCell = styled.td`
+  padding: 8px;
+`;
 
 const TransactionList = ({ transactionList }) => {
   return (
     <div>
-      <table style={{ width: "100%", margin: "10px" }}>
-        <thead>
-          <tr>
-            <td>날짜</td>
-            <td>내용</td>
-            <td>금액</td>
-            <td>잔액</td>
-          </tr>
-        </thead>
-        <tbody>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>날짜</TableHeaderCell>
+            <TableHeaderCell>내용</TableHeaderCell>
+            <TableHeaderCell>금액</TableHeaderCell>
+            <TableHeaderCell>잔액</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
           {transactionList.length > 0 &&
             transactionList.map((transaction, index) => {
               return (
-                <tr key={index}>
-                  <td>{transaction.tran_date}</td>
-                  <td>{transaction.print_content}</td>
-                  <td>{transaction.tran_amt}</td>
-                  <td>{transaction.after_balance_amt}</td>
-                </tr>
+                <TableRow key={index}>
+                  <TableCell>{transaction.tran_date}</TableCell>
+                  <TableCell>{transaction.print_content}</TableCell>
+                  <TableCell>{transaction.tran_amt}</TableCell>
+                  <TableCell>{transaction.after_balance_amt}</TableCell>
+                </TableRow>
               );
             })}
-        </tbody>
-      </table>
+        </TableBody>
+      </Table>
     </div>
   );
 };

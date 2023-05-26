@@ -4,11 +4,13 @@ import { useLocation } from "react-router-dom";
 import queryString from "query-string";
 import axios from "axios";
 import BalanceCard from "../components/Balance/BalanceCard";
+import TransactionList from "../components/Balance/TransactionList";
 
 const BalancePage = () => {
   const queryParams = useLocation().search;
   const fintechUseNo = queryString.parse(queryParams).fintechUseNo;
   const [balance, setBalance] = useState("0");
+  const [transactionList, setTransactionList] = useState([]);
 
   let accessToken = "";
   useEffect(() => {
@@ -50,6 +52,7 @@ const BalancePage = () => {
 
     axios(option).then(({ data }) => {
       console.log(data);
+      setTransactionList(data.res_list);
     });
   };
 
@@ -85,6 +88,7 @@ const BalancePage = () => {
         fintechNo={balance.fintech_use_num}
         balance={balance.balance_amt}
       ></BalanceCard>
+      <TransactionList transactionList={transactionList}></TransactionList>
     </div>
   );
 };
