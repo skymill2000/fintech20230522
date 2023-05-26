@@ -72,8 +72,14 @@ const ModalCard = ({ bankName, fintechUseNo, tofintechno }) => {
       data: data,
     };
     // application/json 은 데이터를 어떻게 전송?
-    axios(option).then((response) => {
-      console.log(response);
+    axios(option).then(({ data }) => {
+      console.log(data);
+      if (data.rsp_code === "A0000") {
+        alert("출금 성공");
+        deposit();
+      } else {
+        alert("결제 실패");
+      }
     });
     // 결과를 로그로 작성
   };
@@ -85,6 +91,48 @@ const ModalCard = ({ bankName, fintechUseNo, tofintechno }) => {
      * 2legged token 사용 !
      * 입금을 하는 계좌를 잘 선택해 주세요
      */
+    const twoLeggedToken =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJNMjAyMzAwNDQwIiwic2NvcGUiOlsib29iIl0sImlzcyI6Imh0dHBzOi8vd3d3Lm9wZW5iYW5raW5nLm9yLmtyIiwiZXhwIjoxNjkyODYyMDAwLCJqdGkiOiIzMzYyOGQzYi1lMzBjLTRkOTItODg1OC1jOTBkZGM1MmIwYWQifQ.3xldjwyRTh3j4krE3TbWZd_DoTkUvHbYjRNdBy27T4E";
+    //2legged Token 입력바랍니다.
+
+    const data = {
+      cntr_account_type: "N",
+      cntr_account_num: "200000000001",
+      wd_pass_phrase: "NONE",
+      wd_print_content: "환불금액",
+      name_check_option: "off",
+      tran_dtime: "20220812130000",
+      req_cnt: "1",
+      req_list: [
+        {
+          tran_no: "1",
+          bank_tran_id: genTransId(),
+          fintech_use_num: tofintechno,
+          print_content: "오픈서비스캐시백",
+          tran_amt: amount,
+          req_client_name: "유관우",
+          req_client_fintech_use_num: fintechUseNo,
+          req_client_num: "1234",
+          transfer_purpose: "ST",
+        },
+      ],
+    };
+    const option = {
+      method: "POST",
+      url: "/v2.0/transfer/deposit/fin_num",
+      headers: {
+        Authorization: `Bearer ${twoLeggedToken}`,
+      },
+      data: data,
+    };
+
+    axios(option).then(({ data }) => {
+      if (data.rsp_code === "A0000") {
+        alert("결제 완료 !");
+      } else {
+        alert("입금실패 !");
+      }
+    });
   };
 
   const handleChange = (e) => {
