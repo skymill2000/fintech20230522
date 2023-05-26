@@ -16,6 +16,7 @@ const BalancePage = () => {
     console.log(localStorage.getItem("userSeqNo"));
     accessToken = localStorage.getItem("accessToken");
     getAccountBalance();
+    getAccountTransactionList();
   }, []);
 
   const genTransId = () => {
@@ -23,6 +24,33 @@ const BalancePage = () => {
     const clientNo = "M202300440"; //이용기관번호 본인것 입력
     let transId = clientNo + "U" + countnum;
     return transId;
+  };
+
+  const getAccountTransactionList = () => {
+    //axios 요청 작성
+    const requestBodyForTransactionList = {
+      bank_tran_id: genTransId(),
+      fintech_use_num: fintechUseNo,
+      inquiry_type: "A",
+      inquiry_base: "D",
+      from_date: "20220101",
+      to_date: "20220201",
+      sort_order: "D",
+      tran_dtime: "20230511150100",
+    };
+    const option = {
+      method: "GET",
+      url: "v2.0/account/transaction_list/fin_num",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+        Authorization: `Bearer ${accessToken}`,
+      },
+      params: requestBodyForTransactionList,
+    };
+
+    axios(option).then(({ data }) => {
+      console.log(data);
+    });
   };
 
   const getAccountBalance = () => {
