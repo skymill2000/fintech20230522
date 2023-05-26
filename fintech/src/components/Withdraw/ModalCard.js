@@ -30,6 +30,7 @@ const ModalCard = ({ bankName, fintechUseNo, tofintechno }) => {
   //fintechUseNo : 내계좌
   //tofintechno : QR 코드로 읽어온 핀테크 계좌
   const [amount, setamount] = useState("");
+  let accessToken = localStorage.getItem("accessToken");
 
   const genTransId = () => {
     let countnum = Math.floor(Math.random() * 1000000000) + 1;
@@ -58,6 +59,8 @@ const ModalCard = ({ bankName, fintechUseNo, tofintechno }) => {
       recv_client_bank_code: "097",
       recv_client_account_num: "100000000001",
     };
+
+    console.log(data);
     // tran_amt, fintech_use_num, req_client_fintech_use_num, bank_tran_id 고정값 사용 금지 나머지는 고정값으로
     // axios option으로 요청을 작성하기 <- api 요청
     const option = {
@@ -69,6 +72,9 @@ const ModalCard = ({ bankName, fintechUseNo, tofintechno }) => {
       data: data,
     };
     // application/json 은 데이터를 어떻게 전송?
+    axios(option).then((response) => {
+      console.log(response);
+    });
     // 결과를 로그로 작성
   };
 
